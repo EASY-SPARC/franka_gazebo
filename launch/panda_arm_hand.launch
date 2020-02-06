@@ -1,6 +1,22 @@
 <launch>
 	<param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_gazebo)/robots/panda_arm_hand.urdf.xacro"/>
 
+<!-- GAZEBO arguments -->
+<arg name="paused" default="false"/>
+<arg name="use_sim_time" default="true"/>
+<arg name="gui" default="true"/>
+<arg name="headless" default="false"/>
+<arg name="debug" default="false"/>
+
+<!--launch GAZEBO with own world configuration -->
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+	<arg name="debug" value="$(arg debug)"/>
+	<arg name="gui" value="$(arg gui)"/>
+	<arg name="paused" value="$(arg paused)"/>
+	<arg name="use_sim_time" value="$(arg use_sim_time)"/>
+	<arg name="headless" value="$(arg headless)"/>
+</include>
+
 	<node name="spawn" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model panda"/>
 
 	<rosparam command="load" file="$(find franka_gazebo)/config/joint_states.yaml" ns="franka"/>
