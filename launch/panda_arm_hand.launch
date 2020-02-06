@@ -26,17 +26,11 @@
 
 	<node name="franka_controller_spawner" pkg="controller_manager" type="spawner" args=
 		"franka/joint_state_controller
-		franka/joint1_position_controller
-		franka/joint2_position_controller
-		franka/joint3_position_controller
-		franka/joint4_position_controller
-		franka/joint5_position_controller
-		franka/joint6_position_controller
-		franka/joint7_position_controller
+		franka/panda_arm_controller
 		franka/gripper_position_controller"/>
 
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub"/> 
 
   <node pkg="franka_gazebo" type="gripper_publisher.py" name="gripper_publisher"/>
-  <node pkg="franka_gazebo" type="example_joint_publisher.py" name="example_joint_publisher" output="screen"/>
+  <!--node pkg="franka_gazebo" type="example_joint_publisher.py" name="example_joint_publisher" output="screen"/-->
 </launch>
